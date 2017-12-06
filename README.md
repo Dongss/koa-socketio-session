@@ -1,5 +1,10 @@
 # koa-socketio-session
 
+[![Build Status](https://travis-ci.org/Dongss/koa-socketio-session.svg?branch=master)](https://travis-ci.org/Dongss/koa-socketio-session)
+[![Coverage Status](https://coveralls.io/repos/github/Dongss/koa-socketio-session/badge.svg?branch=master)](https://coveralls.io/github/Dongss/koa-socketio-session?branch=master)
+[![Dependency Status](https://dependencyci.com/github/Dongss/koa-socketio-session/badge)](https://dependencyci.com/github/Dongss/koa-socketio-session)
+
+
 A [socket.io](https://socket.io/docs/) middleware to share session from Koa app.
 
 Get session by a method: `let mySession = await socket.getSession();`
