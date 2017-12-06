@@ -7,7 +7,7 @@ export function HandleKoaSession2 (app: any, opt: any) {
             return next(new Error('no cookie'));
         }
         let ctx = app.createContext(socket.request, socket.response);
-        let sid = ctx.cookies.get(key);
+        let sid = ctx.cookies.get(key, opt);
         socket.getSession = () => {
             return store.get(sid);
         };
@@ -24,7 +24,7 @@ export function HandleKoaGenericSession (app: any, opt: any) {
             return next(new Error('no cookie'));
         }
         let ctx = app.createContext(socket.request, socket.response);
-        let sid = ctx.cookies.get(key);
+        let sid = ctx.cookies.get(key, opt);
         socket.getSession = () => {
             return store.get(prefix + sid);
         };
@@ -40,7 +40,7 @@ export function HandleKoaSession (app: any, opt: any) {
             return next(new Error('no cookie'));
         }
         let ctx = app.createContext(socket.request, socket.response);
-        let sid = ctx.cookies.get(key);
+        let sid = ctx.cookies.get(key, opt);
         socket.getSession = () => {
             return store.get(sid);
         };
