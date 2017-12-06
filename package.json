@@ -20,6 +20,15 @@
     "node": ">= 7.0.0"
   },
   "keywords": ["koa", "socketio", "session"],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Dongss/koa-socketio-session.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Dongss/koa-socketio-session/issues"
+  },
+  "homepage": "https://github.com/Dongss/koa-socketio-session",
+  "typings": "build/index.d.ts",
   "license": "MIT",
   "devDependencies": {
     "@types/node": "^8.0.54",
