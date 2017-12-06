@@ -1,0 +1,19 @@
+{
+    "compilerOptions": {
+        "target": "es6",
+        "outDir": "../build_test",
+        "sourceMap": true,
+        "module": "commonjs",
+        "removeComments": true,
+        "noImplicitAny": true,
+        "typeRoots": [
+            "../node_modules/@types"
+        ]
+    },
+    "include": [
+        "./*.ts"
+    ],
+    "exclude": [
+        "node_modules"
+    ]
+}

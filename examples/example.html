@@ -1,0 +1,27 @@
+<!doctype html>
+<html>
+    <body>
+        <h1>koa-socketio-session</h1>
+    </body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.3/socket.io.min.js"></script>
+    <script>
+
+        var xhttp = new XMLHttpRequest();
+        xhttp.open('GET', '/ajax/set_session?userName=uu&logined=true', false)
+        xhttp.send();
+        console.log(xhttp.responseText);
+
+        var socket = io.connect({
+            path: '/ws/websocket',
+            transports: ['websocket']
+        });
+        
+        socket.on('connect', function (data) {
+            console.log('connect');
+            socket.emit('message', 'm')
+        });
+        socket.on('error', function (data) {
+            console.error('error', data)
+        })
+    </script>
+</html>
