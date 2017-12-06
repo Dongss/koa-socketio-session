@@ -1,16 +1,61 @@
 {
-  "name": "test",
-  "version": "1.0.0",
+  "name": "koa-socketio-session",
+  "version": "0.1.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "tsc -w",
+    "lint": "tslint 'src/**/*.ts'",
+    "build": "tsc",
+    "prepublish": "npm run build",
+    "pretest": "npm run lint && npm run build && cd test && tsc",
+    "test": "nyc ava --serial"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": {
+    "name": "Shaoshuai Dong",
+    "email": "dongsoso@hotmail.com",
+    "url": "https://github.com/Dongss"
+  },
+  "engines": {
+    "node": ">= 7.0.0"
+  },
+  "keywords": ["koa", "socketio", "session"],
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^8.0.54",
+    "@types/sinon": "^4.0.0",
+    "ava": "^0.23.0",
+    "coveralls": "^3.0.0",
+    "install": "^0.10.2",
+    "koa": "^2.4.1",
+    "koa-generic-session": "^2.0.0",
+    "koa-session": "^5.5.1",
+    "koa-session2": "^2.2.5",
+    "npm": "^5.5.1",
+    "nyc": "^11.3.0",
+    "sinon": "^4.1.2",
+    "socket.io": "^2.0.4",
+    "tslint": "^5.8.0",
+    "typescript": "^2.6.2"
+  },
   "dependencies": {
-    "request": "^2.81.0",
-    "socket.io": "^2.0.4"
+    "koa-redis": "^3.1.1"
+  },
+  "ava": {
+    "files": [
+      "build_test/test/*.js",
+      "!build_test/lib.js"
+    ]
+  },
+  "nyc": {
+    "reporter": [
+      "html",
+      "lcov",
+      "text"
+    ],
+    "exclude": [
+      "node_modules",
+      "build_test/test"
+    ]
   }
 }

@@ -15,6 +15,10 @@ Get session by a method: `let mySession = await socket.getSession();`
 * [koa-generic-session](https://github.com/koajs/generic-session)
 * [koa-session2](https://github.com/Secbone/koa-session2)
 
+## Install
+
+`npm install koa-socketio-session --save`
+
 ## Usage
 
 ### koa-session
@@ -229,3 +233,7 @@ io.on('connection', (socket) => {
     });
 });
 ```
+
+## Test
+
+`npm test`
