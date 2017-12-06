@@ -1,1 +1,4 @@
 !dist
+build_test
+coverage
+.nyc_output

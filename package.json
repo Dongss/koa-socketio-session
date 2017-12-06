@@ -1,8 +1,8 @@
 {
   "name": "koa-socketio-session",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "",
-  "main": "index.js",
+  "main": "build/index.js",
   "scripts": {
     "dev": "tsc -w",
     "lint": "tslint 'src/**/*.ts'",
@@ -19,7 +19,11 @@
   "engines": {
     "node": ">= 7.0.0"
   },
-  "keywords": ["koa", "socketio", "session"],
+  "keywords": [
+    "koa",
+    "socketio",
+    "session"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Dongss/koa-socketio-session.git"
