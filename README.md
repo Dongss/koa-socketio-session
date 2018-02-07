@@ -242,3 +242,7 @@ io.on('connection', (socket) => {
 ## Test
 
 `npm test`
+
+## Tips
+
+This socketio middleware only work for reading session from koa app, not write session. (working on it)
