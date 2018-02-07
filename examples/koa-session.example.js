@@ -91,7 +91,7 @@ const io = require('socket.io')(server, {
 io.use(koaSocketioSession(app, sessionOpt));
 
 io.use(async (socket, next) => {
-    let s = await socket.getSession();
+    let s = await socket.session;
     if (!s || !s.logined) {
         return next(new Error('unauthorized'));
     }
@@ -99,16 +99,24 @@ io.use(async (socket, next) => {
 });
 
 io.on('connection', (socket) => {
-    console.log('connection');
+    console.log('connection:', socket.session);
 
-    socket.on('message', async (m) => {
+    socket.on('message', (m) => {
         console.log('message', m);
-        let s = await socket.getSession();
-        console.log(s);
     });
 
-    socket.use(async (p, next) => {
-        let s = await socket.getSession();
+    socket.on('get', () => {
+       console.log('get:', socket.session);
+    });
+
+    socket.on('set', () => {
+        console.log('before set:', socket.session);
+        socket.session = {name: 2222, logined: true};
+        console.log('after set:', socket.session);
+    });
+
+    socket.use((p, next) => {
+        let s = socket.session;
         if (!s || !s.logined) {
             return next(new Error('unauthorized'));
         }

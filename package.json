@@ -1,7 +1,7 @@
 {
   "name": "koa-socketio-session",
-  "version": "0.1.2",
-  "description": "",
+  "version": "1.0.0",
+  "description": "A socket.io middleware to share session with Koa app.",
   "main": "build/index.js",
   "scripts": {
     "dev": "tsc -w",

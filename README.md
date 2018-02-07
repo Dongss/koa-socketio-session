@@ -7,7 +7,7 @@
 
 A [socket.io](https://socket.io/docs/) middleware to share session from Koa app.
 
-Get session by a method: `let mySession = await socket.getSession();`
+Get koa app session by: `let mySession = socket.session;`
 
 ## Require
 
@@ -78,8 +78,8 @@ const io = require('socket.io')(server, {
 
 io.use(koaSocketioSession(app, sessionOpt));
 
-io.use(async (socket, next) => {
-    let s = await socket.getSession();
+io.use((socket, next) => {
+    let s = socket.session;
     if (!s || !s.logined) {
         return next(new Error('unauthorized'));
     }
@@ -87,10 +87,10 @@ io.use(async (socket, next) => {
 });
 
 io.on('connection', (socket) => {
-    let s = await socket.getSession();
+    let s = socket.session;
     console.log(s);
-    socket.use(async (p, next) => {
-        let s = await socket.getSession();
+    socket.use((p, next) => {
+        let s = socket.session;
         if (!s || !s.logined) {
             return next(new Error('unauthorized'));
         }
@@ -141,8 +141,8 @@ const io = require('socket.io')(server, {
 
 io.use(koaSocketioSession(app, sessionOpt));
 
-io.use(async (socket, next) => {
-    let s = await socket.getSession();
+io.use((socket, next) => {
+    let s = socket.session;
     if (!s || !s.logined) {
         return next(new Error('unauthorized'));
     }
@@ -150,10 +150,10 @@ io.use(async (socket, next) => {
 });
 
 io.on('connection', (socket) => {
-    let s = await socket.getSession();
+    let s = socket.session;
     console.log(s);
-    socket.use(async (p, next) => {
-        let s = await socket.getSession();
+    socket.use((p, next) => {
+        let s = socket.session;
         if (!s || !s.logined) {
             return next(new Error('unauthorized'));
         }
@@ -218,8 +218,8 @@ const io = require('socket.io')(server, {
 
 io.use(koaSocketioSession(app, sessionOpt));
 
-io.use(async (socket, next) => {
-    let s = await socket.getSession();
+io.use((socket, next) => {
+    let s = socket.session;
     if (!s || !s.logined) {
         return next(new Error('unauthorized'));
     }
@@ -227,10 +227,10 @@ io.use(async (socket, next) => {
 });
 
 io.on('connection', (socket) => {
-    let s = await socket.getSession();
+    let s = socket.session;
     console.log(s);
-    socket.use(async (p, next) => {
-        let s = await socket.getSession();
+    socket.use((p, next) => {
+        let s = socket.session;
         if (!s || !s.logined) {
             return next(new Error('unauthorized'));
         }

@@ -58,7 +58,6 @@ test('test koa-session2', async t => {
             } catch (err) {
                 console.log('Set session error:', err);
             }
-
             return sid;
         }
 
@@ -74,6 +73,7 @@ test('test koa-session2', async t => {
     };
     KoaApp.use(KoaSession2(sessionOpt));
     let spy1 = sinon.spy(KoaCtx.cookies, 'get');
+    let spy2 = sinon.spy(sessionOpt.store, 'get');
     const ioMiddleware = HandleKoaSession2(KoaApp, sessionOpt);
     let socket: any = {
         request: {},
@@ -84,13 +84,12 @@ test('test koa-session2', async t => {
             }
         }
     };
+    await sessionOpt.store.set({name: 123}, {sid: '1234'});
     let md = ioMiddleware(socket, () => {});
     assert(spy1.withArgs('4lKSd^Qma*3').calledOnce);
     assert(spy1.withArgs('4lKSd^Qma*3').returned('1234'));
     spy1.restore();
-    t.is(typeof socket.getSession, 'function');
-    let spy2 = sinon.spy(sessionOpt.store, 'get');
-    let s = await socket.getSession();
+    let s = socket.session;
     assert(spy2.withArgs('1234').calledOnce);
     spy2.restore();
 
@@ -114,6 +113,7 @@ test('test koa-generic-sessin', async t => {
     };
     KoaApp.use(KoaSession2(sessionOpt));
     let spy1 = sinon.spy(KoaCtx.cookies, 'get');
+    let spy2 = sinon.spy(sessionOpt.store, 'get');
     const ioMiddleware = HandleKoaGenericSession(KoaApp, sessionOpt);
     let socket: any = {
         request: {},
@@ -128,9 +128,7 @@ test('test koa-generic-sessin', async t => {
     assert(spy1.withArgs('hj23.a#ja0').calledOnce);
     assert(spy1.withArgs('hj23.a#ja0').returned('1234'));
     spy1.restore();
-    t.is(typeof socket.getSession, 'function');
-    let spy2 = sinon.spy(sessionOpt.store, 'get');
-    let s = await socket.getSession();
+    let s = await socket.session;
     assert(spy2.withArgs('koa:sess:1234').calledOnce);
     spy2.restore();
 
@@ -145,7 +143,7 @@ test('test koa-generic-sessin', async t => {
     t.pass();
 });
 
-test('test koa-sessin', async t => {
+test('test koa-session', async t => {
     // session store
     class Store {
         sessions: any;
@@ -196,6 +194,7 @@ test('test koa-sessin', async t => {
     };
     KoaApp.use(KoaSession2(sessionOpt));
     let spy1 = sinon.spy(KoaCtx.cookies, 'get');
+    let spy2 = sinon.spy(sessionOpt.store, 'get');
     const ioMiddleware = HandleKoaSession(KoaApp, sessionOpt);
     let socket: any = {
         request: {},
@@ -210,9 +209,7 @@ test('test koa-sessin', async t => {
     assert(spy1.withArgs('9,fn4&m4la').calledOnce);
     assert(spy1.withArgs('9,fn4&m4la').returned('1234'));
     spy1.restore();
-    t.is(typeof socket.getSession, 'function');
-    let spy2 = sinon.spy(sessionOpt.store, 'get');
-    let s = await socket.getSession();
+    let s = await socket.session;
     assert(spy2.withArgs('1234').calledOnce);
     spy2.restore();
 
