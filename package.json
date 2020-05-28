@@ -44,7 +44,7 @@
     "koa-generic-session": "^2.0.0",
     "koa-session": "^5.5.1",
     "koa-session2": "^2.2.5",
-    "npm": "^5.5.1",
+    "npm": "^6.13.4",
     "nyc": "^11.3.0",
     "sinon": "^4.1.2",
     "socket.io": "^2.0.4",
