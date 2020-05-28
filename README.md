@@ -30,6 +30,10 @@ Get koa app session by: `let mySession = socket.session;`
 
 [koa-session](https://github.com/koajs/session)
 
+Notice:
+
+If you are using koa-session >= 6.0.0, you must pass `key` option. [koa-session 6.x issue](https://github.com/koajs/session#notice)
+
 `const koaSocketioSession = require('koa-socketio-session').HandleKoaSession;`
 
 koaSocketioSession(app, opt)
